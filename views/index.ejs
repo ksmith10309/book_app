@@ -3,9 +3,28 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Book App</title>
+        <link rel="stylesheet" href="/styles/reset.css">
         <link rel="stylesheet" href="/styles/base.css">
     </head>
     <body>
-        <h1>THIS IS INDEX!!!</h1> 
+        <header>
+            <h2>Best Books!</h2>
+        </header>
+        <div class="page-type">Saved Books</div>
+        <main>
+
+            <% books.forEach( book => { %>
+            <div class="book-card">
+                <img src="<%= book.image_url %>">
+                <p class="title"><%= book.title %></p>
+                <p class="author"><%= book.author %></p>
+            </div>
+            <% }); %>
+
+            <p> Number of books: <%= books.length %> </p>
+
+        </main>
+        <footer></footer>
+        
     </body>
 </html>
