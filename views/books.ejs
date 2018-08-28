@@ -6,6 +6,12 @@
         <link rel="stylesheet" href="/styles/base.css">
     </head>
     <body>
-        <h1>THIS IS INDEX!!!</h1> 
+        <% books.forEach( book => { %>
+            <img src="<%= book.image_url %>">
+            <p><%= book.title %></p>
+            <p><%= book.author %></p>
+        <% }); %>
+
+        <p> Number of books: <%= books.length %> </p>
     </body>
 </html>
