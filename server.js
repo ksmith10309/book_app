@@ -46,7 +46,6 @@ function showDetails(request, response){
   //Show book description GET
 
   let SQL = 'SELECT * FROM books WHERE id = $1';
-  console.log('response ');
   let id = request.params.id;
   // console.log('id', id);
 
@@ -55,10 +54,10 @@ function showDetails(request, response){
   ];
   client.query(SQL, values)
     .then(data => {
-      // console.log(data);
       let authorData = data.rows;
+      console.log(authorData);
       response.render('pages/show', {
-        data: authorData
+        detail: authorData
       });
     });
 }

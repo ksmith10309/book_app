@@ -17,8 +17,8 @@
                 <p class="title"><%= book.title %></p>
                 <p class="author"><%= book.author %></p>
                 
-                <form action="/books/:id" method = "get">
-                    <input name="id" value= "<%= book.id %>">
+                    <form action="/books/<%= book.id %>" method = "get">
+                    
                     <button type="submit">View Details</button>
                 </form>
                 
