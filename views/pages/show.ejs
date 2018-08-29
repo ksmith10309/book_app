@@ -9,9 +9,7 @@
 </head>
 
 <body>
-    <header>
-        <h2>Best Books!</h2>
-    </header>
+    <% include ../partials/header %>
     <div class="page-type">Saved Books</div>
     <main>
 
@@ -23,12 +21,15 @@
             <p class="author">
                 <%= detail[0].author %>
             </p>
-            
+
             <p class="description">
                 <%= detail[0].description %>
             </p>
+            <p class="isbn">
+                ISBN: <%= detail[0].isbn %>
+            </p>
         </div>
-    
+
 
     </main>
     <footer></footer>
