@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book App</title>
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/base.css">
+</head>
+
+<body>
+    <header>
+        <h2>Best Books!</h2>
+    </header>
+    <div class="page-type">Saved Books</div>
+    <main>
+
+        <div class="book-card">
+            <img src="<%= authorData.image_url %>">
+            <p class="title">
+                <%= authorData.title %>
+            </p>
+            <p class="author">
+                <%= authorData.author %>
+            </p>
+            
+            <p class="description">
+                <%= authorData.description %>
+            </p>
+        </div>
+    
+
+    </main>
+    <footer></footer>
+
+</body>
+
+</html>

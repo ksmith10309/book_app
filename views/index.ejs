@@ -7,9 +7,7 @@
         <link rel="stylesheet" href="/styles/base.css">
     </head>
     <body>
-        <header>
-            <h2>Best Books!</h2>
-        </header>
+        <% include partials/header %>
         <div class="page-type">Saved Books</div>
         <main>
 
@@ -18,6 +16,12 @@
                 <img src="<%= book.image_url %>">
                 <p class="title"><%= book.title %></p>
                 <p class="author"><%= book.author %></p>
+                
+                <form action="/books/:id" method = "get">
+                    <input name="id" value= "<%= book.id %>">
+                    <button type="submit">View Details</button>
+                </form>
+                
             </div>
             <% }); %>
 
