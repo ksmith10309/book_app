@@ -1,30 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Book App</title>
-        <link rel="stylesheet" href="/styles/reset.css">
-        <link rel="stylesheet" href="/styles/base.css">
-    </head>
-    <body>
-        <header>
-            <h2>Best Books!</h2>
-        </header>
-        <div class="page-type">Saved Books</div>
-        <main>
 
-            <% books.forEach( book => { %>
-            <div class="book-card">
-                <img src="<%= book.image_url %>">
-                <p class="title"><%= book.title %></p>
-                <p class="author"><%= book.author %></p>
-            </div>
-            <% }); %>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book App</title>
 
-            <p> Number of books: <%= books.length %> </p>
+    <link rel="stylesheet" href="/styles/reset.css">
+    <link rel="stylesheet" href="/styles/icons.css">
+    <link rel="stylesheet" href="/styles/base.css">
 
-        </main>
-        <footer></footer>
-        
-    </body>
+</head>
+
+<body>
+    <% include partials/header %>
+    <div class="page-type">Saved Books</div>
+    <main>
+
+        <% books.forEach( book => { %>
+        <div class="book-card">
+            <img src="<%= book.image_url %>">
+            <p class="title">
+                <%= book.title %>
+            </p>
+            <p class="author">
+                <%= book.author %>
+            </p>
+
+            <form action="/books/<%= book.id %>" method="get">
+
+                <button type="submit">View Details</button>
+            </form>
+
+        </div>
+        <% }); %>
+
+        <p> Number of books:
+            <%= books.length %>
+        </p>
+
+    </main>
+    <footer></footer>
+
+</body>
+
 </html>
