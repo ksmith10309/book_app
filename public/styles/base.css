@@ -5,22 +5,12 @@ body {
     font-family: sans-serif;
 }
 
-header {
-    background-color: rgb(100, 33, 59);
-    color: white;
-    padding: 10px;
-    font-size: 1.2em;
-    height: 50px;
-    line-height: 50px;
+a {
+    text-decoration: none;
 }
 
-.page-type {
-    background-color: rgb(167,71,78);
+h1 {
     color: white;
-    text-align: center;
-    height: 50px;
-    line-height: 50px;
-    display: block;
 }
 
 main {
@@ -29,72 +19,12 @@ main {
     text-align: center;
 }
 
-.book-card {
-    background-color: rgb(236,209,153);
-    margin-bottom: 20px;
+section {
     padding: 20px;
-    box-shadow: 0 0 7px rgb(100, 33, 59);
+    text-align: center;
 }
 
-.book-card p {
-    margin: 10px;
-}
-
-.book-card img {
-    border: 5px solid rgb(248, 241, 230);
-}
-
-.title {
-    color: rgb(100, 33, 59);
-    font-weight: bold;
-}
-
-.author, .isbn {
-    color: rgb(167,71,78);
-    font-style: italic;
-}
-
-
-.description {
-    background-color: rgb(248, 241, 230);
-    padding: 20px;
-    line-height: 20px;
-    text-align: left;
-}
-
-button {
-    background-color: rgb(167, 71, 78);
-    color: white;
-    padding: 10px;
-    font-weight: 600;
-    border-color: rgb(167, 71, 78);
-}
-
-button:hover {
-    background-color: darkslateblue;
-}
-
-.icon-menu {
-
-    font-size: 2em;
-    float: right;
-    top: -45px;
-    position: relative;
-    /* display: block; */
-}
-
-.tab {
-    font-size: 0.5em;
-}
-
-nav ul {
-    display: none;
-    padding: 0;
-    list-style: none;
-    clear: both;
-    position: absolute;
-}
-
-nav:hover ul {
-    display: block;
+section h3 {
+    margin: 20px;
+    font-size: 20px;
 }

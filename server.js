@@ -4,9 +4,9 @@ require('dotenv').config();
 const express = require('express');
 const pg = require('pg');
 
-
 let app = express();
 app.set('view engine', 'ejs');
+app.use(express.urlencoded({extended:true}));
 const PORT = process.env.PORT;
 
 // const CONSTRING = process.env.DATABASE_URL;
@@ -44,7 +44,7 @@ app.get('/books', showBooks);
 app.get('/books/:id', showDetails);
 
 function showDetails(request, response){
-  //Show book description GET
+  // Show book description GET
 
   let SQL = 'SELECT * FROM books WHERE id = $1';
   let id = request.params.id;
@@ -58,11 +58,43 @@ function showDetails(request, response){
       let authorData = data.rows;
       console.log(authorData);
       response.render('pages/show', {
-        detail: authorData
-      });
+        detail: authorData, 'message': 'hidden'});
     });
 }
 
+// Add Book
+app.get('/add-book', (request, response) => {
+  response.render('pages/new');
+});
+
+app.post('/add-book', addBook);
+
+function addBook (request, response){
+  let SQL = `
+    INSERT INTO books (title, author, isbn, image_url, description) 
+    VALUES ( $1, $2, $3, $4, $5 )
+  `;
+  let values = [
+    request.body.title,
+    request.body.author,
+    request.body.isbn,
+    request.body.image_url,
+    request.body.description
+  ];
+
+  client.query(SQL, values)
+    .then(() => {
+      let newBookData = [];
+      newBookData.push(request.body);
+
+      response.render('pages/show', {
+        detail: newBookData, 'message': 'show'});
+    })
+    .catch(err => {
+      console.log(err);
+      response.status(500).send(err);
+    });
+}
 
 app.use( express.static('./public') );
 

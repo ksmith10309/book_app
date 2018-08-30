@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book App</title>
-
-    <link rel="stylesheet" href="/styles/reset.css">
-    <link rel="stylesheet" href="/styles/icons.css">
-    <link rel="stylesheet" href="/styles/base.css">
-
-</head>
+<% include partials/head %>
 
 <body>
     <% include partials/header %>
-    <div class="page-type">Saved Books</div>
+    <div class="page-type"><h2>Saved Books</h2></div>
     <main>
 
         <% books.forEach( book => { %>
@@ -39,7 +31,8 @@
         </p>
 
     </main>
-    <footer></footer>
+
+    <% include partials/footer %>
 
 </body>
 
