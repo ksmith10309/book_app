@@ -1,0 +1,67 @@
+header {
+    background-color: rgb(100, 33, 59);
+    color: white;
+    padding: 10px;
+    font-size: 1.2em;
+    height: 50px;
+    line-height: 50px;
+
+}
+
+nav ul {
+    display: none;
+    padding: 0;
+    list-style: none;
+    clear: both;
+    position: absolute;
+    width: 170px;
+    top: 35px;
+    right: -5px;
+    border: 1px solid white;
+}
+
+nav:hover ul {
+    display: block;
+}
+
+.book-card {
+    background-color: rgb(236,209,153);
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 0 7px rgb(100, 33, 59);
+}
+
+.book-card p {
+    margin: 10px;
+}
+
+.book-card img {
+    border: 5px solid rgb(248, 241, 230);
+}
+
+.title {
+    color: rgb(100, 33, 59);
+    font-weight: bold;
+}
+
+.author, .isbn {
+    color: rgb(167,71,78);
+    font-style: italic;
+}
+
+.description {
+    background-color: rgb(248, 241, 230);
+    padding: 20px;
+    line-height: 20px;
+    text-align: left;
+}
+
+footer {
+    background-color: rgb(230, 161, 110);
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+footer span {
+    font-size: 10px;
+}
