@@ -14,6 +14,10 @@ header {
     line-height: 50px;
 }
 
+h1 {
+    color: white;
+}
+
 .page-type {
     background-color: rgb(167,71,78);
     color: white;
@@ -27,6 +31,16 @@ main {
     padding: 40px 20px;
     background-color: rgb(230, 161, 110);
     text-align: center;
+}
+
+section {
+    padding: 20px;
+    text-align: center;
+}
+
+h3 {
+    margin: 20px;
+    font-size: 20px;
 }
 
 .book-card {
@@ -65,22 +79,22 @@ main {
 button {
     background-color: rgb(167, 71, 78);
     color: white;
-    padding: 10px;
+    padding: 10px 20px;
     font-weight: 600;
+    min-width: 20%;
     border-color: rgb(167, 71, 78);
 }
 
 button:hover {
+    border-color: darkslateblue;
     background-color: darkslateblue;
 }
 
 .icon-menu {
-
     font-size: 2em;
     float: right;
     top: -45px;
     position: relative;
-    /* display: block; */
 }
 
 .tab {
@@ -93,8 +107,63 @@ nav ul {
     list-style: none;
     clear: both;
     position: absolute;
+    width: 170px;
+    top: 35px;
+    right: -5px;
+    border: 1px solid white;
 }
 
 nav:hover ul {
     display: block;
 }
+
+.tab {
+    background-color: wheat;
+    color: rgb(100, 33, 59);
+    line-height: 30px;
+    padding: 10px;
+    font-size: 0.4em;
+    font-weight: bold;
+    font-family: sans-serif;
+    border: 1px solid white;
+}
+
+.tab:hover {
+    background-color: rgb(167, 71, 78);
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+input {
+    display: block;
+    width: 80%;
+    height: 30px;
+    margin: 0px auto 20px auto;
+}
+
+textarea {
+    display: block;
+    width: 80%;
+    height: 100px;
+    margin: 20px auto;
+}
+
+footer {
+    background-color: rgb(230, 161, 110);
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+footer span {
+    font-size: 10px;
+}
+
+#success-message {
+    color: rgb(100, 33, 59);
+    position: relative;
+    bottom: 20px;
+}
+

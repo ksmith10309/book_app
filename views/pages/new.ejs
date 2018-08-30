@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<% include ../partials/head %>
+
+<body>
+    <% include ../partials/header %>
+    <div class="page-type"><h2>Add a New Book</h2></div>
+    <main>
+
+        <form class="book-form" method="POST" action="/add-book">
+
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" name="author" placeholder="Author" required>
+            <input type="text" maxlength="13" name="isbn" placeholder="ISBN" required>
+            <input type="url" name="image_url" placeholder="Image URL" required>
+            <textarea name="description" placeholder="Description" required></textarea>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+    </main>
+
+    <% include ../partials/footer %>
+
+</body>
+
+</html>
