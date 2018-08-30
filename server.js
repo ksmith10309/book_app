@@ -9,8 +9,8 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended:true}));
 const PORT = process.env.PORT;
 
-// const CONSTRING = process.env.DATABASE_URL;
-const CONSTRING = 'postgres://localhost:5432/books_app';
+const CONSTRING = process.env.DATABASE_URL;
+// const CONSTRING = 'postgres://localhost:5432/books_app';
 
 let client = new pg.Client(CONSTRING);
 client.connect();
