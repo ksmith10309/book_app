@@ -9,8 +9,9 @@ let app = express();
 app.set('view engine', 'ejs');
 const PORT = process.env.PORT;
 
-const CONSTRING = process.env.DATABASE_URL;
-// const CONSTRING = 'postgres://trevorstam:1910@localhost:5432/books';
+// const CONSTRING = process.env.DATABASE_URL;
+const CONSTRING = 'postgres://localhost:5432/books_app';
+
 let client = new pg.Client(CONSTRING);
 client.connect();
 client.on('error', err => {
