@@ -4,35 +4,37 @@
 <% include partials/head %>
 
 <body>
-    <% include partials/header %>
-    <div class="page-type"><h2>Saved Books</h2></div>
-    <main>
+  <% include partials/header %>
+  <div class="page-type">
+    <h2>Saved Books</h2>
+  </div>
+  <main>
 
-        <% books.forEach( book => { %>
-        <div class="book-card">
-            <img src="<%= book.image_url %>">
-            <p class="title">
-                <%= book.title %>
-            </p>
-            <p class="author">
-                <%= book.author %>
-            </p>
+    <% books.forEach( book => { %>
+    <div class="book-card">
+      <img src="<%= book.image_url %>">
+      <p class="title">
+        <%= book.title %>
+      </p>
+      <p class="author">
+        <%= book.author %>
+      </p>
 
-            <form action="/books/<%= book.id %>" method="get">
+      <form action="/books/<%= book.id %>" method="get">
 
-                <button type="submit">View Details</button>
-            </form>
+        <button type="submit">View Details</button>
+      </form>
 
-        </div>
-        <% }); %>
+    </div>
+    <% }); %>
 
-        <p> Number of books:
-            <%= books.length %>
-        </p>
+    <p> Number of books:
+      <%= books.length %>
+    </p>
 
-    </main>
+  </main>
 
-    <% include partials/footer %>
+  <% include partials/footer %>
 
 </body>
 

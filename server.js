@@ -3,6 +3,7 @@
 require('dotenv').config();
 const express = require('express');
 const pg = require('pg');
+const superagent = require('superagent');
 
 let app = express();
 app.set('view engine', 'ejs');
@@ -18,9 +19,33 @@ client.on('error', err => {
   console.error(err);
 });
 
+
+//GET REQUESTS
+
 app.get('/', showBooks);
 
-function showBooks (request, response){
+app.get('/books', showBooks);
+
+app.get('/books/:id', showDetails);
+
+// Add Book
+app.get('/add-book', (request, response) => {
+  response.render('pages/new');
+});
+
+app.get('/search-book', (request, response) => {
+  response.render('pages/search');
+});
+
+app.get('/results', searchBook);
+
+//POST REQUESTS
+
+app.post('/add-book', addBook);
+
+//FUNCTIONS
+
+function showBooks(request, response) {
 
   let SQL = 'SELECT id, title, author, image_url FROM books';
   client.query(SQL)
@@ -37,11 +62,6 @@ function showBooks (request, response){
     });
 
 }
-
-
-app.get('/books', showBooks);
-
-app.get('/books/:id', showDetails);
 
 function showDetails(request, response){
   // Show book description GET
@@ -61,13 +81,6 @@ function showDetails(request, response){
         detail: authorData, 'message': 'hidden'});
     });
 }
-
-// Add Book
-app.get('/add-book', (request, response) => {
-  response.render('pages/new');
-});
-
-app.post('/add-book', addBook);
 
 function addBook (request, response){
   let SQL = `
@@ -89,6 +102,33 @@ function addBook (request, response){
 
       response.render('pages/show', {
         detail: newBookData, 'message': 'show'});
+    })
+    .catch(err => {
+      console.log(err);
+      response.status(500).send(err);
+    });
+}
+
+function searchBook(request, response){
+  let search = encodeURIComponent(request.query.search);
+  let url = 'https://www.googleapis.com/books/v1/volumes?q=in'+ request.query.by + ':' + search;
+
+  superagent.get(url)
+    .then( results => {
+      let listNewBooks = results.body.items.reduce((items, currentItem) => {
+        let newBook = {
+          title: currentItem.volumeInfo.title,
+          author: currentItem.volumeInfo.authors,
+          image_url: currentItem.volumeInfo.imageLinks.smallThumbnail,
+          isbn: currentItem.volumeInfo.industryIdentifiers[0].identifier,
+          description: currentItem.volumeInfo.description
+        };
+        items.push(newBook);
+        return items;
+      }, []);
+
+      response.render('pages/results', {books: listNewBooks});
+
     })
     .catch(err => {
       console.log(err);
