@@ -115,13 +115,17 @@ function searchBook(request, response){
 
   superagent.get(url)
     .then( results => {
+      console.log('result ', results.body);
+      if(results.body.totalItems === 0) {
+        throw new Error('No results found');
+      }
       let listNewBooks = results.body.items.reduce((items, currentItem) => {
         let newBook = {
-          title: currentItem.volumeInfo.title,
-          author: currentItem.volumeInfo.authors,
-          image_url: currentItem.volumeInfo.imageLinks.smallThumbnail,
-          isbn: currentItem.volumeInfo.industryIdentifiers[0].identifier,
-          description: currentItem.volumeInfo.description
+          title: currentItem.volumeInfo.title ||'title not available',
+          author: currentItem.volumeInfo.authors ||'author not available',
+          image_url: currentItem.volumeInfo.imageLinks.smallThumbnail ||'https://orig00.deviantart.net/507c/f/2007/173/4/e/firefox_rules_by_applescript.jpg',
+          isbn: currentItem.volumeInfo.industryIdentifiers[0].identifier ||'ISBN not available',
+          description: currentItem.volumeInfo.description ||'description not available'
         };
         items.push(newBook);
         return items;
