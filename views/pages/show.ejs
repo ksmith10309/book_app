@@ -4,35 +4,36 @@
 <% include ../partials/head %>
 
 <body>
-    <% include ../partials/header %>
+  <% include ../partials/header %>
 
-    <main>
-        <% if (message === "show") { %>
-            <div class="success-message"><span>Your Book Has Been Successfully Added</span></div>
-        <% } %>
+  <main>
+    <% if (message === "show") { %>
+    <div class="success-message"><span>Your Book Has Been Successfully Added</span></div>
+    <% } %>
 
-        <div class="book-card">
-            <img src="<%= detail[0].image_url %>">
-            <p class="title">
-                <%= detail[0].title %>
-            </p>
-            <p class="author">
-                <%= detail[0].author %>
-            </p>
+    <div class="book-card">
+      <img src="<%= detail[0].image_url %>">
+      <p class="title">
+        <%= detail[0].title %>
+      </p>
+      <p class="author">
+        <%= detail[0].author %>
+      </p>
 
-            <p class="description">
-                <%= detail[0].description %>
-            </p>
-            <p class="isbn">
-                ISBN: <%= detail[0].isbn %>
-            </p>
-        </div>
+      <p class="description">
+        <%= detail[0].description %>
+      </p>
+      <p class="isbn">
+        ISBN:
+        <%= detail[0].isbn %>
+      </p>
+    </div>
 
 
 
-    </main>
-    
-    <% include ../partials/footer %>
+  </main>
+
+  <% include ../partials/footer %>
 
 </body>
 

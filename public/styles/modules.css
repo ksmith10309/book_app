@@ -43,6 +43,9 @@ textarea {
     width: 80%;
     height: 100px;
     margin: 20px auto;
+    font-family: sans-serif;
+    font-size: 0.9em;
+    padding-top: 8px;
 }
 
 button {
@@ -74,3 +77,34 @@ section h3 {
     margin: 20px;
     font-size: 20px;
 }
+
+.radio {
+    position: relative;
+    background-color: wheat;
+    width: 80%;
+    margin: 20px auto;
+    text-align: left;
+    height: 45px;
+    line-height: 46px;
+}
+
+label {
+    margin-left: 50px;
+    color: rgb(100, 33, 59);
+}
+
+.radio-button {
+    position: absolute;
+    left: 15px;
+    top: 8px;   
+}
+
+input[type="radio"] {
+    transform: scale(0.5);
+}
+
+.hidden-textarea {
+    display:none;
+}
+
+
