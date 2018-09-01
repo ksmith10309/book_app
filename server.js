@@ -59,7 +59,6 @@ function showDetails(request, response){
   client.query(SQL, values)
     .then(data => {
       let authorData = data.rows;
-      console.log(authorData);
       response.render('pages/show', {detail: authorData, 'message': 'hidden'});
     });
 }
@@ -76,7 +75,6 @@ function addBook (request, response){
     request.body.image_url,
     request.body.description
   ];
-
   client.query(SQL, values)
     .then(() => {
       let newBookData = [];
@@ -92,7 +90,6 @@ function addBook (request, response){
 function searchBook(request, response){
   let search = encodeURIComponent(request.query.search);
   let url = 'https://www.googleapis.com/books/v1/volumes?q=in'+ request.query.by + ':' + search;
-
   superagent.get(url)
     .then( results => {
       if(results.body.totalItems === 0) {
@@ -100,13 +97,12 @@ function searchBook(request, response){
       } else {
         let filterBooks = results.body.items.filter(el => el.volumeInfo.imageLinks !== undefined);
         let newBooks = filterBooks.reduce((items, currentItem) => {
-          let book_isbn = (currentItem.volumeInfo.industryIdentifiers) ? currentItem.volumeInfo.industryIdentifiers[0].identifier : 'not available';
           let newBook = {
-            title: (currentItem.volumeInfo.title) ? currentItem.volumeInfo.title : 'Title not available',
-            author: (currentItem.volumeInfo.authors) ? currentItem.volumeInfo.authors : 'Author not available',
-            isbn: book_isbn,
+            title: currentItem.volumeInfo.title || 'Title: Not Available',
+            author: currentItem.volumeInfo.authors || 'Author: Not Available',
+            isbn: (currentItem.volumeInfo.industryIdentifiers) ? currentItem.volumeInfo.industryIdentifiers[0].identifier : 'Not Available',
             image_url: currentItem.volumeInfo.imageLinks.smallThumbnail,
-            description: (currentItem.volumeInfo.description) ? currentItem.volumeInfo.description : 'Description not available'
+            description: currentItem.volumeInfo.description || 'Description: Not Available'
           };
           items.push(newBook);
           return items;
