@@ -19,16 +19,13 @@ client.on('error', err => {
   console.error(err);
 });
 
-
 //GET REQUESTS
-
 app.get('/', showBooks);
 
 app.get('/books', showBooks);
 
 app.get('/books/:id', showDetails);
 
-// Add Book
 app.get('/add-book', (request, response) => {
   response.render('pages/new');
 });
@@ -40,45 +37,30 @@ app.get('/search-book', (request, response) => {
 app.get('/results', searchBook);
 
 //POST REQUESTS
-
 app.post('/add-book', addBook);
 
 //FUNCTIONS
-
 function showBooks(request, response) {
-
   let SQL = 'SELECT id, title, author, image_url FROM books';
   client.query(SQL)
     .then(data => {
-      // console.log(data);
       let bookData = data.rows;
-      response.render('index', {
-        books: bookData
-      });
+      response.render('index', {books: bookData});
     })
     .catch(err => {
       console.log(err);
       response.render('pages/error');
     });
-
 }
 
 function showDetails(request, response){
-  // Show book description GET
-
   let SQL = 'SELECT * FROM books WHERE id = $1';
-  let id = request.params.id;
-  // console.log('id', id);
-
-  let values = [
-    id
-  ];
+  let values = [ request.params.id ];
   client.query(SQL, values)
     .then(data => {
       let authorData = data.rows;
       console.log(authorData);
-      response.render('pages/show', {
-        detail: authorData, 'message': 'hidden'});
+      response.render('pages/show', {detail: authorData, 'message': 'hidden'});
     });
 }
 
@@ -99,9 +81,7 @@ function addBook (request, response){
     .then(() => {
       let newBookData = [];
       newBookData.push(request.body);
-
-      response.render('pages/show', {
-        detail: newBookData, 'message': 'show'});
+      response.render('pages/show', {detail: newBookData, 'message': 'show'});
     })
     .catch(err => {
       console.log(err);
@@ -115,24 +95,24 @@ function searchBook(request, response){
 
   superagent.get(url)
     .then( results => {
-      console.log('result ', results.body);
       if(results.body.totalItems === 0) {
-        throw new Error('No results found');
+        response.render('pages/results', {'results': 'notfound'});
+      } else {
+        let filterBooks = results.body.items.filter(el => el.volumeInfo.imageLinks !== undefined);
+        let newBooks = filterBooks.reduce((items, currentItem) => {
+          let book_isbn = (currentItem.volumeInfo.industryIdentifiers) ? currentItem.volumeInfo.industryIdentifiers[0].identifier : 'not available';
+          let newBook = {
+            title: (currentItem.volumeInfo.title) ? currentItem.volumeInfo.title : 'Title not available',
+            author: (currentItem.volumeInfo.authors) ? currentItem.volumeInfo.authors : 'Author not available',
+            isbn: book_isbn,
+            image_url: currentItem.volumeInfo.imageLinks.smallThumbnail,
+            description: (currentItem.volumeInfo.description) ? currentItem.volumeInfo.description : 'Description not available'
+          };
+          items.push(newBook);
+          return items;
+        }, []);
+        response.render('pages/results', {books: newBooks, 'results': 'found'});
       }
-      let listNewBooks = results.body.items.reduce((items, currentItem) => {
-        let newBook = {
-          title: currentItem.volumeInfo.title ||'title not available',
-          author: currentItem.volumeInfo.authors ||'author not available',
-          image_url: currentItem.volumeInfo.imageLinks.smallThumbnail ||'https://orig00.deviantart.net/507c/f/2007/173/4/e/firefox_rules_by_applescript.jpg',
-          isbn: currentItem.volumeInfo.industryIdentifiers[0].identifier ||'ISBN not available',
-          description: currentItem.volumeInfo.description ||'description not available'
-        };
-        items.push(newBook);
-        return items;
-      }, []);
-
-      response.render('pages/results', {books: listNewBooks});
-
     })
     .catch(err => {
       console.log(err);
