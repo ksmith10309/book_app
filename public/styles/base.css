@@ -4,9 +4,9 @@
 
 body {
     background-color: white;
-    max-width: 500px;
-    margin: 0 auto;
     font-family: sans-serif;
+    margin: 0 auto;
+    max-width: 600px;
 }
 
 a {
@@ -18,8 +18,8 @@ h1 {
 }
 
 main {
-    padding: 40px 20px;
     background-color: rgb(230, 161, 110);
+    padding: 40px 20px;
     text-align: center;
 }
 
@@ -29,6 +29,6 @@ section {
 }
 
 section h3 {
-    margin: 20px;
     font-size: 20px;
+    margin: 20px;
 }

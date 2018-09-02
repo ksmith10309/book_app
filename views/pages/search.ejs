@@ -12,14 +12,16 @@
 
     <form class="book-form" method="GET" action="/results">
       <input type="text" name="search" placeholder="Enter a title or author" required>
-      <div class="radio">
+
+      <label class="radio" for="title">Title
         <input type="radio" class="radio-button" id="title" name="by" value="title">
-        <label for="title">Title</label>
-      </div>
-      <div class="radio">
+        <span class="checkmark"></span>
+      </label>
+      <label class="radio" for="author">Author
         <input type="radio" class="radio-button" id="author" name="by" value="author">
-        <label for="author">Author</label>
-      </div>
+        <span class="checkmark"></span>
+      </label>
+
       <button type="submit">Search the Google Books API</button>
     </form>
 
