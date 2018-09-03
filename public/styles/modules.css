@@ -2,12 +2,13 @@
     float: right;
     font-size: 40px;
     position: relative;
-    top: -45px;
+    bottom: 55px;
 }
 
 .tab {
     background-color: rgb(236,209,153);
-    border: 1px solid white;
+    border: solid white;
+    border-width: 0px 2px 2px 2px;
     color: rgb(100, 33, 59);
     font-family: sans-serif;
     font-size: 16px;
@@ -56,6 +57,7 @@ button {
     background-color: rgb(167, 71, 78);
     border-color: rgb(167, 71, 78);
     color: white;
+    cursor: pointer;
     font-size: 14px;
     font-weight: 600;
     min-width: 20%;

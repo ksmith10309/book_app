@@ -7,12 +7,15 @@ header {
 }
 
 header h1 {
+    color: white;
+    display: inline;
     font-family: 'Lobster', cursive;
     font-size: 32px;
 }
 
 nav ul {
-    border: 1px solid white;
+    border: solid white;
+    border-width: 2px 0px 0px 0px;
     clear: both;
     display: none;
     list-style: none;

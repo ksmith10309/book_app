@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-y: scroll;
+}
+
 body {
     background-color: white;
     font-family: sans-serif;
@@ -11,10 +15,6 @@ body {
 
 a {
     text-decoration: none;
-}
-
-h1 {
-    color: white;
 }
 
 main {
